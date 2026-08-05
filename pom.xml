@@ -143,6 +143,14 @@
           <groupId>org.bouncycastle</groupId>
           <artifactId>bcprov-jdk18on</artifactId>
         </exclusion>
+        <!-- jetty-client drags in an old Jetty 9 jetty-util that shadows
+             the Jetty 12 one required by jenkins-test-harness on the
+             flattened test classpath; github-autostatus never touches
+             the datadog plugin's HTTP transport, only its metrics client -->
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-client</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>org.json</groupId>
           <artifactId>json</artifactId>
